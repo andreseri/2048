@@ -1,6 +1,6 @@
 var y, x, yVector, xVector;
 
-var update = function(x, y, xVector, yVector) {
+function update(y, x, yVector, xVector) {
 	for (var j = 0; j < 3; i++) {
 		for (var i = 0; i < 3 ; i++) {
 			if ( grid[y + yVector][x + xVector] == 0 ) {
@@ -15,29 +15,30 @@ var update = function(x, y, xVector, yVector) {
 		x += xVector;		
 	};
 	nextMove();
+	console.log(grid);
 };
 
 window.addEventListener('keypress', function(key) {
-	switch (key) {
-		case 37: 	// left arrow
+	switch (key.which) {
+		case 97: 	// left arrow
 			y = 0;
 			x = 3;
 			yVector = 1;
 			xVector = -1;
 			break;
-		case 38: 	// up arrow
+		case 119: 	// up arrow
 			y = 0;
 			x = 3;
 			yVector = 1;
 			xVector = -1;
 			break;
-		case 39: 	// right arrow
+		case 100: 	// right arrow
 			y = 0;
 			x = 3;
 			yVector = 1;
 			xVector = -1;
 			break;
-		case 40: 	// down arrow
+		case 115: 	// down arrow
 			y = 0;
 			x = 3;
 			yVector = 1;
@@ -45,5 +46,5 @@ window.addEventListener('keypress', function(key) {
 			break;							
 	}
 	update(y, x, yVector, xVector);
-})
+}, false);
 

@@ -1,10 +1,10 @@
 var grid = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
 
-var random = function() {
+function random() {
 	return Math.floor(Math.random() * 4);
 }
 
-var initiate = function() {
+function initiate() {
 	var y = random();
 	var x = random();
 	grid[y][x] = 2;
@@ -16,7 +16,7 @@ var initiate = function() {
 	grid[y][x] = 2;
 };
 
-var nextMove = function() {
+function nextMove() {
 	do {
 		y = random();
 		x = random();
