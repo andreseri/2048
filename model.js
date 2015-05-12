@@ -1,88 +1,61 @@
-var Model = (function() {
-	
-	var grid = [];
-	var gamePlay = false;
+function Grid(_size) {
+	this.size = _size;
+	this.cells = this.createGrid();
+};
 
-	function createGrid(gridSize) {
-		grid = new Array(gridSize)
-		for (var i = 0; i < gridSize; i++) {
-			grid[i] = new Array(gridSize+1).join('0').split('').map(parseFloat);
+Grid.prototype.createGrid = function() {
+	var cells = new Array(this.size);
+	for (var i = 0; i < this.size; i++) {
+		cells[i] = new Array(this.size + 1).join('0').split('').map(parseFloat);
+	};
+
+	return cells;
+};
+
+Grid.prototype.eachCell = function(callback) {
+	for (var x = 0; x < 4; x++) {
+		for (var y = 0; y < 4; y++) {
+			callback(x, y, this.cells[x][y]);
 		};
 	};
+};
 
-	function eachCell(callback) {
-		for (var x = 0; x < 4; x++) {
-			for (var y = 0; y < 4; y++) {
-				callback(x, y, grid[x][y]);
-			};
+Grid.prototype.availableCells = function() {
+	var cells = [];
+
+	this.eachCell(function(x, y, tile) {
+		if(!tile) {
+			cells.push({ x: x, y: y})
 		};
+	});
+
+	return cells;
+};
+
+Grid.prototype.randomAvailableCell = function() {
+	var cells = this.availableCells();
+
+	if (cells.length) {
+		return cells[ Math.floor(Math.random() * cells.length)];
 	};
+};
 
-	function availableCells() {
-		var cells = [];
+Grid.prototype.insertTile = function(tile) {
+	this.cells[tile.x][tile.y] = tile;
+};
 
-		eachCell(function(x, y, tile) {
-			if(!tile) {
-				cells.push({ x: x, y: y})
-			};
-		});
+Grid.prototype.removeTile = function(tile) {
+	this.cells[tile.x][tile.y] = 0;
+};
 
-		return cells;
-	};
+function Tile(_position, _value) {
+	this.x = _position.x;
+	this.y = _position.y;
+	this.value = _value || 2;
+};
 
-	function randomAvailableCell() {
-		var cells = availableCells();
+Tile.prototype.updatePosition = function(_position) {
+	this.x = _position.x;
+	this.y = _position.y;
 
-		if(cells.length) {
-			return cells[ Math.floor(Math.random() * cells.length)];
-		};
-	};
-
-	function Tile(position, value) {
-		this.x = position.x;
-		this.y = position.y;
-		this.value = value || 2;
-	};
-
-	function insertTile(tile) {
-		grid[tile.x][tile.y] = tile;
-	};
-
-	function removeTile(tile) {
-		grid[tile.x][tile.y] = null;
-	};
-
-	function addRandomTile() {
-		var value = Math.random < 0.9 ? 4 : 2;
-		var tile = new Tile(randomAvailableCell(), value);
-
-		insertTile(tile);
-	};
-
-	function addStartTiles(startTiles) {
-		for (var i = 0; i < startTiles; i++) {
-			addRandomTile();
-			gamePlay = true;
-		};
-	};
-
-	return {
-		initiate : function(_gridSize, _startTiles) {
-			var gridSize = _gridSize;
-			var startTiles = _startTiles;
-			if (!gamePlay) {
-				createGrid(gridSize);
-				addStartTiles(startTiles)
-			} else {
-				console.log('Game already initiated.')
-			}
-		},
-
-		checkGrid : function() {
-			console.log(grid)
-		}
-	};
-})();
-
-Model.initiate(4,2);
-Model.checkGrid();
+};
