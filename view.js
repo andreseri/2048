@@ -1,5 +1,6 @@
 function View() {
 	this.gridContainer = document.querySelector('#table');
+	this.tileContainer = document.querySelector('.tile-container');
 	this.score = 0;
 };
 
@@ -19,14 +20,22 @@ View.prototype.createGridDisplay = function(_grid) {
 	};
 };
 
-function deletGridDisplay() {
-	var table = document.getElementById('table');
-	for (var i = 0; i < 4; i++) {
-		table.deletRow(i);
+View.prototype.addTile = function(_tile) {
+	tile = _tile;
+	var newTile = document.createElement("div");
+	newTile.innerHTML = tile.value;
+	this.tileContainer.appendChild(newTile);
+	newTile.setAttribute("class", "tile p"+tile.x+"-"+tile.y);
+	console.log(this.tileContainer);
+};
+
+View.prototype.deletGridDisplay = function() {
+	for (var i = 3; i >= 0; i--) {
+		this.gridContainer.deleteRow(i);
 	};
 };
 
-function updateGridDisplay(grid) {
-	deletGridDisplay();
-	createGridDisplay(grid);
+View.prototype.updateGridDisplay = function(_grid) {
+	this.deletGridDisplay();
+	this.createGridDisplay(_grid);
 };

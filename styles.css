@@ -1,0 +1,75 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+#game-container {
+	position: relative;
+	top: 200px;
+	width: 480px;
+	overflow: auto;
+	margin: auto;
+	background-color: #c8c8a9;
+}
+
+.grid-container {
+	z-index: 1;
+}
+
+.grid-space {
+	position: relative;
+	float: left;
+	display: block;
+	height: 120px;
+	width: 120px;
+	border: 5px solid #c8c8a9;
+	border-radius: 15px;
+	background-color: #f9cdad;
+}
+
+.tile-container {
+	z-index: 2;
+}
+
+.tile {
+	position: absolute;
+	display: block;
+	height: 120px;
+	width: 120px;
+	border: 5px #c8c8a9 solid;
+	border-radius: 15px;
+	background-color: #83af9b;
+	font-family: Verdana, sans-serif;
+	font-size: 60px;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+}
+
+.tile {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.p0-0 { top: 0px; left: 0px; }
+.p0-1 { top: 0px; left: 120px; }
+.p0-2 { top: 0px; left: 240px; }
+.p0-3 { top: 0px; left: 360px; }
+.p1-0 { top: 120px; left: 0px; }
+.p1-1 { top: 120px; left: 120px; }
+.p1-2 { top: 120px; left: 240px; }
+.p1-3 { top: 120px; left: 360px; }
+.p2-0 { top: 240px; left: 0px; }
+.p2-1 { top: 240px; left: 120px; }
+.p2-2 { top: 240px; left: 240px; }
+.p2-3 { top: 240px; left: 360px; }
+.p3-0 { top: 360px; left: 0px; }
+.p3-1 { top: 360px; left: 120px; }
+.p3-2 { top: 360px; left: 240px; }
+.p3-3 { top: 360px; left: 360px; }
